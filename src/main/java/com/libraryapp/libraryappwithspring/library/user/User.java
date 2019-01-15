@@ -1,15 +1,16 @@
-package com.libraryapp.libraryappwithspring.library.borrower;
+package com.libraryapp.libraryappwithspring.library.user;
 
 import javax.persistence.*;
 
 import com.libraryapp.libraryappwithspring.library.book.Book;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "borrower")
-public class Borrower {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,19 +26,11 @@ public class Borrower {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "password")
+    private char[] password;
+
     @ManyToMany(mappedBy = "borrowers")
     private Set<Book> books = new HashSet<>();
-
-    public Borrower(Long borrowerId, String name, String adress, String email, Set<Book> books) {
-        this.borrowerId = borrowerId;
-        this.name = name;
-        this.adress = adress;
-        this.email = email;
-        this.books = books;
-    }
-
-    public Borrower() {
-    }
 
     public Long getBorrowerId() {
         return borrowerId;
@@ -71,6 +64,14 @@ public class Borrower {
         this.email = email;
     }
 
+    public char[] getPassword() {
+        return password;
+    }
+
+    public void setPassword(char[] password) {
+        this.password = password;
+    }
+
     public Set<Book> getBooks() {
         return books;
     }
@@ -81,11 +82,12 @@ public class Borrower {
 
     @Override
     public String toString() {
-        return "Borrower{" +
+        return "User{" +
                 "borrowerId=" + borrowerId +
                 ", name='" + name + '\'' +
                 ", adress='" + adress + '\'' +
                 ", email='" + email + '\'' +
+                ", password=" + Arrays.toString(password) +
                 ", books=" + books +
                 '}';
     }

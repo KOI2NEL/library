@@ -1,6 +1,7 @@
 package com.libraryapp.libraryappwithspring.library.author;
 
-import com.libraryapp.libraryappwithspring.library.book.Book;
+
+import com.libraryapp.libraryappwithspring.library.bookdata.BookData;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -25,25 +26,7 @@ public class Author {
             joinColumns = {@JoinColumn(name = "author_id")},
             inverseJoinColumns = {@JoinColumn(name = "book_id")}
     )
-    private Set<Book> books = new HashSet<>();
-
-    public Author(Long id, String authorName, String authorSurname, Set<Book> books) {
-        this.id = id;
-        this.authorName = authorName;
-        this.authorSurname = authorSurname;
-        this.books = books;
-    }
-
-    public Author() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private Set<BookData> books = new HashSet<>();
 
     public String getAuthorName() {
         return authorName;
@@ -61,19 +44,18 @@ public class Author {
         this.authorSurname = authorSurname;
     }
 
-    public Set<Book> getBooks() {
+    public Set<BookData> getBooks() {
         return books;
     }
 
-    public void setBooks(Set<Book> books) {
+    public void setBooks(Set<BookData> books) {
         this.books = books;
     }
 
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + id +
-                ", authorName='" + authorName + '\'' +
+                "authorName='" + authorName + '\'' +
                 ", authorSurname='" + authorSurname + '\'' +
                 ", books=" + books +
                 '}';

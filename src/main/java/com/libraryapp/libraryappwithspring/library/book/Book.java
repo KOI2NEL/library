@@ -1,7 +1,7 @@
 package com.libraryapp.libraryappwithspring.library.book;
 
 import com.libraryapp.libraryappwithspring.library.author.Author;
-import com.libraryapp.libraryappwithspring.library.borrower.Borrower;
+import com.libraryapp.libraryappwithspring.library.user.User;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -29,14 +29,14 @@ public class  Book {
             joinColumns = {@JoinColumn(name = "book_id")},
             inverseJoinColumns = {@JoinColumn(name = "borrower_id")}
     )
-    private Set<Borrower> borrowers = new HashSet<>();
+    private Set<User> users = new HashSet<>();
 
 
-    public Book(Long bookId, String title, Set<Author> authors, Set<Borrower> borrowers) {
+    public Book(Long bookId, String title, Set<Author> authors, Set<User> users) {
         this.bookId = bookId;
         this.title = title;
         this.authors = authors;
-        this.borrowers = borrowers;
+        this.users = users;
     }
 
     public Book() {
@@ -66,12 +66,12 @@ public class  Book {
         this.authors = authors;
     }
 
-    public Set<Borrower> getBorrowers() {
-        return borrowers;
+    public Set<User> getUsers() {
+        return users;
     }
 
-    public void setBorrowers(Set<Borrower> borrowers) {
-        this.borrowers = borrowers;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class  Book {
                 "bookId=" + bookId +
                 ", title='" + title + '\'' +
                 ", authors=" + authors +
-                ", borrowers=" + borrowers +
+                ", users=" + users +
                 '}';
     }
 }
